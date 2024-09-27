@@ -1,22 +1,29 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
-const routes: Routes =[
+const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'dashboard', // Redirige a la vista de 'dashboard'
     pathMatch: 'full',
-  }, {
-    path: '',
-    component: AdminLayoutComponent,
-    children: [{
-      path: '',
-      loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
-    }]
+  },
+  {
+    path: '', // Ruta base
+    component: AdminLayoutComponent, // Usa el layout principal
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule) // Carga perezosa del módulo
+      }
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: 'dashboard' // Redirige a 'dashboard' en caso de rutas no encontradas
   }
 ];
 
@@ -24,11 +31,11 @@ const routes: Routes =[
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
-       useHash: true
+    RouterModule.forRoot(routes, {
+      useHash: true // Usa hash en las rutas para evitar problemas con el servidor
     })
   ],
-  exports: [
-  ],
+  exports: [RouterModule], // Exporta el módulo de rutas para que sea accesible en toda la app
 })
 export class AppRoutingModule { }
+
