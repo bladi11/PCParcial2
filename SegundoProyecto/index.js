@@ -1,4 +1,5 @@
 // index.js
+// index.js
 const express = require('express');
 const sequelize = require('./Config/database'); // Conexión a la base de datos
 const productRoutes = require('./Routes/productRoutes');
@@ -18,3 +19,7 @@ sequelize.sync()
         });
     })
     .catch(err => console.error('Unable to connect to the database:', err));
+
+// Exportar la aplicación para usar en pruebas
+module.exports = app; 
+
