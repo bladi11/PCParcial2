@@ -1,0 +1,8 @@
+:host {
+    display: block;
+    background-color: #1e9bee; /* Color sólido */
+    /* background-image: url('path-to-your-image.jpg'); */ /* Imagen de fondo */
+    /* background-size: cover; */ /* Ajustar imagen al tamaño del contenedor */
+    /* background-repeat: no-repeat; */ /* Evitar repetición de la imagen */
+  }
+  
